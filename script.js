@@ -1,6 +1,6 @@
 // script.js
 
-// KELIMELER değişkeni messages.js dosyasından gelir.
+// KELIMELER messages.js'ten, RENKLER colors.js'ten gelir.
 
 // Mevcut kelimeyi takip eden sayaç
 let sayac = 0;
@@ -8,23 +8,35 @@ let sayac = 0;
 // HTML elemanlarını seçme
 const yaziAlani = document.getElementById('yazi');
 const buton = document.getElementById('buton');
+// Arka planı değiştireceğimiz body etiketini seçiyoruz
+const bodyElementi = document.body; 
+
+// Sayfa yüklendiğinde ilk rengi uygula
+bodyElementi.style.backgroundColor = RENKLER[0];
+
 
 // Butona tıklandığında çalışacak fonksiyon
 function tiklamaIslemi() {
     // Eğer sayaç KELIMELER dizisinin sonuna ulaştıysa
     if (sayac >= KELIMELER.length) {
-        // Yalnızca butonu devre dışı bırakıyoruz, yazı sabit kalıyor
+        // Yalnızca butonu devre dışı bırak
         buton.disabled = true; 
         
-        // Butonun stilini de değiştirelim, bittiği belli olsun
+        // Butonun stilini bittiği belli olsun diye değiştir
         buton.textContent = "BİTTİ!";
         buton.style.backgroundColor = "#ff6b6b"; 
         
         return; // Fonksiyondan çık
     }
 
-    // Dizideki mevcut kelimeyi ekrana yazdır
+    // 1. Dizideki mevcut kelimeyi ekrana yazdır
     yaziAlani.textContent = KELIMELER[sayac];
+    
+    // 2. Arka plan rengini değiştir (Eğer renk dizisi, kelime dizisi ile eşleşiyorsa)
+    if (sayac < RENKLER.length) {
+         // JavaScript ile body'nin stilini değiştirme
+        bodyElementi.style.backgroundColor = RENKLER[sayac];
+    }
 
     // Bir sonraki tıklama için sayacı artır
     sayac++;
