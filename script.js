@@ -13,9 +13,13 @@ const buton = document.getElementById('buton');
 function tiklamaIslemi() {
     // Eğer sayaç KELIMELER dizisinin sonuna ulaştıysa
     if (sayac >= KELIMELER.length) {
-        yaziAlani.textContent = "Bitti! Baştan başlamak için sayfayı yenile.";
-        // Butonu devre dışı bırak
+        // Yalnızca butonu devre dışı bırakıyoruz, yazı sabit kalıyor
         buton.disabled = true; 
+        
+        // Butonun stilini de değiştirelim, bittiği belli olsun
+        buton.textContent = "BİTTİ!";
+        buton.style.backgroundColor = "#ff6b6b"; 
+        
         return; // Fonksiyondan çık
     }
 
